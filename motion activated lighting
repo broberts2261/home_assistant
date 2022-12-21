@@ -1,0 +1,37 @@
+alias: "Motion Activated Lights"
+description: motion activated lighting for room
+trigger:
+  - platform: state
+    entity_id:
+      - binary.sensor.<insert motion sensor>
+    from: "off"
+    to: "on"
+condition:
+  - condition: and
+    conditions:
+      - condition: not
+        conditions:
+          - condition: state
+            entity_id: input_boolean.bedtime_mode
+            state: "on"
+action:
+  - service: light.turn_on
+    data:
+      color_temp: 337
+      brightness_pct: 80
+    target:
+      entity_id: light.<insert light entity name>
+  - wait_for_trigger:
+      - platform: state
+        entity_id:
+          - binary_sensor.<insert motion sensor>
+        to: "off"
+        for:
+          hours: 0
+          minutes: 10
+          seconds: 0
+  - service: light.turn_off
+    data: {}
+    target:
+      entity_id: light.<insert light entity name>
+mode: single
