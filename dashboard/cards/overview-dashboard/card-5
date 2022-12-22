@@ -1,0 +1,127 @@
+type: custom:layout-card
+layout_type: custom:grid-layout
+layout:
+  grid-template-columns: 1fr 1fr 1fr 1fr
+  margin: 0
+  padding: 0
+  card_margin: 0
+cards:
+  - type: custom:button-card
+    state:
+      - value: 'on'
+        color: rgb(255, 0, 0)
+        icon: mdi:door-open
+        styles:
+          card:
+            - animation: blink 5s ease infinite
+      - value: 'off'
+        color: white
+        icon: mdi:door
+    entity: binary_sensor.doors
+    size: 40%
+    aspect_ratio: null
+    name: Doors
+    styles:
+      card:
+        - width: 75px
+        - height: 60px
+        - margin: none
+    tap_action:
+      action: fire-dom-event
+      browser_mod:
+        service: browser_mod.popup
+        data:
+          content:
+            show_name: true
+            show_icon: true
+            show_state: true
+            type: glance
+            entities:
+              - entity: binary_sensor.front_door
+              - entity: binary_sensor.back_door
+              - entity: binary_sensor.porch_door
+              - entity: binary_sensor.deck_door
+            title: Doors
+  - type: custom:button-card
+    state:
+      - value: 'on'
+        color: rgb(255, 0, 0)
+        icon: mdi:window-open
+        styles:
+          card:
+            - animation: blink 5s ease infinite
+      - value: 'off'
+        color: white
+        icon: mdi:window-closed-variant
+    entity: binary_sensor.windows
+    size: 40%
+    aspect_ratio: null
+    name: Windows
+    styles:
+      card:
+        - width: 75px
+        - height: 60px
+        - margin: none
+    tap_action:
+      action: fire-dom-event
+      browser_mod:
+        service: browser_mod.popup
+        data:
+          content:
+            show_name: true
+            show_icon: true
+            show_state: true
+            type: glance
+            entities:
+              - entity: binary_sensor.guest_room_window
+              - entity: binary_sensor.guest_bathroom_window
+            title: Windows
+  - type: custom:button-card
+    state:
+      - value: 'on'
+        color: rgb(255, 0, 0)
+        icon: mdi:water-alert
+        styles:
+          card:
+            - animation: blink 5s ease infinite
+      - value: 'off'
+        color: white
+        icon: mdi:water
+    entity: binary_sensor.water_sensors
+    size: 40%
+    aspect_ratio: null
+    name: Water
+    styles:
+      card:
+        - width: 75px
+        - height: 60px
+        - margin: none
+    tap_action:
+      action: fire-dom-event
+      browser_mod:
+        service: browser_mod.popup
+        data:
+          content:
+            show_name: true
+            show_icon: true
+            show_state: true
+            type: glance
+            entities:
+              - entity: binary_sensor.kitchen_water_sensor
+              - entity: binary_sensor.bathroom_water_sensor
+              - entity: binary_sensor.guest_bathroom_water_sensor
+            title: Water Sensors
+  - type: custom:button-card
+    size: 40%
+    icon: mdi:lightning-bolt
+    name: Energy
+    aspect_ratio: null
+    color: white
+    styles:
+      card:
+        - width: 75px
+        - height: 60px
+        - margin: none
+    tap_action:
+      action: navigate
+      navigation_path: /energy
