@@ -1,0 +1,62 @@
+type: custom:layout-card
+layout_type: custom:grid-layout
+layout:
+  grid-template-columns: 1fr 1fr 1fr 1fr
+  margin: 0
+  padding: 0
+  card_margin: 0
+cards:
+  - type: custom:button-card
+    name: Spotify
+    color_type: null
+    icon: mdi:spotify
+    styles:
+      card:
+        - width: 75px
+        - height: 60px
+        - margin: none
+    tap_action:
+      action: fire-dom-event
+      browser_mod:
+        service: browser_mod.popup
+        data:
+          content:
+            type: custom:spotify-card
+            limit: 10
+            height: 350
+            device: media_player.den_sonos
+  - type: custom:button-card
+    name: Movie
+    color_type: null
+    icon: mdi:theater
+    styles:
+      card:
+        - width: 75px
+        - height: 60px
+        - margin: none
+    tap_action:
+      action: null
+  - type: custom:button-card
+    name: Car
+    color_type: null
+    icon: mdi:car
+    styles:
+      card:
+        - width: 75px
+        - height: 60px
+        - margin: none
+    tap_action:
+      action: navigate
+      navigation_path: /lovelace/car
+  - type: custom:button-card
+    name: DC
+    color_type: null
+    icon: mdi:database
+    styles:
+      card:
+        - width: 75px
+        - height: 60px
+        - margin: none
+    tap_action:
+      action: navigate
+      navigation_path: /lovelace/2
