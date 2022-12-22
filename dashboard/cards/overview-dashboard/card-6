@@ -1,0 +1,76 @@
+type: vertical-stack
+cards:
+  - type: custom:room-card
+    title: Bathroom
+    show_icon: true
+    theme: default
+    entities:
+      - entity: light.bathroom_lights
+        name: Lights
+        icon: mdi:light-recessed
+        state_color: true
+        tap_action:
+          action: toggle
+        show_icon: true
+    info_entities:
+      - entity: sensor.bathroom_illumination_sensor
+      - entity: binary_sensor.bathroom_motion_sensor
+        show_icon: true
+        state_color: true
+  - type: custom:room-card
+    title: Guest Room
+    show_icon: true
+    theme: default
+    entities:
+      - entity: light.guest_room_lights
+        name: Lights
+        icon: mdi:ceiling-fan-light
+        state_color: '#275f78'
+        tap_action:
+          action: toggle
+        show_icon: true
+      - entity: switch.guest_room_lamp
+        name: Lamp
+        icon: mdi:lamp
+        state_color: '#275f78'
+        tap_action:
+          action: toggle
+        show_icon: true
+      - entity: fan.guest_room_fan
+        name: Fan
+        icon: mdi:fan
+        show_icon: true
+        tap_action:
+          action: fan.toggle
+      - entity: light.guest_bathroom
+        name: Bathroom
+        icon: mdi:lightbulb
+        state_color: '#275f78'
+        tap_action:
+          action: toggle
+        show_icon: true
+    info_entities:
+      - entity: sensor.guest_room_illumination_sensor
+      - entity: binary_sensor.guest_room_motion_sensor
+        show_icon: true
+        state_color: true
+  - type: custom:room-card
+    title: Outside
+    show_icon: true
+    theme: default
+    entities:
+      - entity: light.porch_light
+        name: Porch
+        icon: mdi:outdoor-lamp
+        state_color: '#275f78'
+        tap_action:
+          action: toggle
+        show_icon: true
+      - entity: light.deck_lights
+        name: Deck
+        icon: mdi:post-lamp
+        state_color: true
+        theme: AMOLED Blue
+        tap_action:
+          action: toggle
+        show_icon: true
