@@ -1,0 +1,17 @@
+type: custom:layout-card
+layout_type: custom:grid-layout
+color: '#ff9f09'
+layout:
+  grid-template-columns: 1fr 1fr
+  margin: 0
+  padding: 0
+  card_margin: 0
+cards:
+  - type: custom:mushroom-entity-card
+    entity: person.<name>
+    icon_type: entity-picture
+    fill_container: true
+  - type: custom:mushroom-entity-card
+    entity: person.<name>
+    icon_type: entity-picture
+    fill_container: true
