@@ -1,0 +1,911 @@
+button_card_templates:
+  header: null
+kiosk_mode:
+  hide_header: true
+views:
+  - theme: ios-dark-mode-blue-red-alternative
+    icon: mdi:home
+    type: custom:horizontal-layout
+    layout:
+      width: 300
+      max_cols: 3
+    badges: []
+    cards:
+      - type: custom:layout-card
+        layout_type: custom:grid-layout
+        color: '#ff9f09'
+        layout:
+          grid-template-columns: 1fr 1fr
+          margin: 0
+          padding: 0
+          card_margin: 0
+        cards:
+          - type: custom:mushroom-entity-card
+            entity: person.brett_roberts
+            icon_type: entity-picture
+            fill_container: true
+          - type: custom:mushroom-entity-card
+            entity: person.allison_van_riper
+            icon_type: entity-picture
+            fill_container: true
+      - type: custom:layout-card
+        layout_type: custom:grid-layout
+        layout:
+          grid-template-columns: 1fr 1fr 1fr
+          margin: 0
+          padding: 0
+          card_margin: 0
+        cards:
+          - type: custom:button-card
+            size: 40%
+            aspect_ratio: null
+            icon: mdi:weather-cloudy
+            name: Weather
+            styles:
+              card:
+                - width: 100px
+                - height: 65px
+                - margin: none
+            tap_action:
+              action: fire-dom-event
+              browser_mod:
+                service: browser_mod.popup
+                data:
+                  content:
+                    type: weather-forecast
+                    entity: weather.home
+          - type: custom:button-card
+            size: 40%
+            aspect_ratio: null
+            icon: mdi:thermostat
+            name: Thermostat
+            styles:
+              card:
+                - width: 100px
+                - height: 65px
+                - margin: none
+            tap_action:
+              action: fire-dom-event
+              browser_mod:
+                service: browser_mod.popup
+                data:
+                  content:
+                    type: thermostat
+                    entity: climate.hallway
+          - type: custom:button-card
+            size: 40%
+            aspect_ratio: null
+            icon: mdi:calendar
+            name: Calendar
+            styles:
+              card:
+                - width: 100px
+                - height: 65px
+                - margin: none
+            tap_action:
+              action: fire-dom-event
+              browser_mod:
+                service: browser_mod.popup
+                data:
+                  content:
+                    initial_view: listWeek
+                    type: calendar
+                    entities:
+                      - calendar.bacroberts8_gmail_com
+                    card_mod:
+                      style:
+                        ha-full-calendar:
+                          $: |
+                            #calendar {
+                              min-height: 276px !important;
+                            }
+      - type: custom:layout-card
+        layout_type: custom:grid-layout
+        cards:
+          - type: custom:button-card
+            entity: input_boolean.bedtime_mode
+            size: 40%
+            aspect_ratio: null
+            icon: mdi:power-sleep
+            name: Bedtime
+            color: '#ff9f09'
+            styles:
+              card:
+                - width: 75px
+                - height: 65px
+                - margin: none
+            tap_action:
+              action: toggle
+          - type: custom:button-card
+            entity: input_boolean.daytime_sleep_mode
+            icon: mdi:sun-angle
+            name: Day Sleep
+            color: '#ff9f09'
+            styles:
+              card:
+                - width: 75px
+                - height: 65px
+            tap_action:
+              action: toggle
+          - type: custom:button-card
+            entity: input_boolean.guest_mode
+            icon: mdi:account-supervisor
+            name: Guest
+            color: '#ff9f09'
+            styles:
+              card:
+                - width: 75px
+                - height: 65px
+            tap_action:
+              action: toggle
+          - type: custom:button-card
+            entity: input_boolean.
+            icon: mdi:map-clock-outline
+            name: Away
+            color: auto
+            styles:
+              card:
+                - width: 75px
+                - height: 65px
+            tap_action:
+              action: toggle
+        layout:
+          grid-template-columns: 1fr 1fr 1fr 1fr
+          name: Test
+          margin: 0
+          padding: 0
+          card_margin: 0
+      - type: custom:layout-card
+        layout_type: custom:grid-layout
+        layout:
+          grid-template-columns: 1fr 1fr
+          margin: 0
+          padding: 0
+          card_margin: 0
+        cards:
+          - type: custom:button-card
+            color_type: card
+            icon: mdi:ceiling-fan-light
+            name: Lights
+            color: none
+            size: 40%
+            styles:
+              card:
+                - width: 150px
+                - height: 60px
+                - margin: none
+            card:
+              - height: 70px
+            tap_action:
+              action: call-service
+              service: light.turn_off
+              service_data:
+                entity_id: light.all_lights
+          - type: custom:button-card
+            color_type: card
+            icon: phu:christmas-tree-v2
+            name: Christmas Lights
+            color: none
+            size: 40%
+            styles:
+              card:
+                - width: 150px
+                - height: 60px
+                - margin: none
+            card:
+              - height: 70px
+            tap_action:
+              action: call-service
+              service: switch.turn_off
+              service_data:
+                entity_id: switch.christmas_lights
+      - type: custom:layout-card
+        layout_type: custom:grid-layout
+        layout:
+          grid-template-columns: 1fr 1fr 1fr 1fr
+          margin: 0
+          padding: 0
+          card_margin: 0
+        cards:
+          - type: custom:button-card
+            name: Spotify
+            color_type: null
+            icon: mdi:spotify
+            styles:
+              card:
+                - width: 75px
+                - height: 60px
+                - margin: none
+            tap_action:
+              action: fire-dom-event
+              browser_mod:
+                service: browser_mod.popup
+                data:
+                  content:
+                    type: custom:spotify-card
+                    limit: 10
+                    height: 350
+                    device: media_player.den_sonos
+          - type: custom:button-card
+            name: Movie
+            color_type: null
+            icon: mdi:theater
+            styles:
+              card:
+                - width: 75px
+                - height: 60px
+                - margin: none
+            tap_action:
+              action: null
+          - type: custom:button-card
+            name: Car
+            color_type: null
+            icon: mdi:car
+            styles:
+              card:
+                - width: 75px
+                - height: 60px
+                - margin: none
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace/car
+          - type: custom:button-card
+            name: DC
+            color_type: null
+            icon: mdi:database
+            styles:
+              card:
+                - width: 75px
+                - height: 60px
+                - margin: none
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace/2
+      - type: custom:layout-card
+        layout_type: custom:grid-layout
+        layout:
+          grid-template-columns: 1fr 1fr 1fr 1fr
+          margin: 0
+          padding: 0
+          card_margin: 0
+        cards:
+          - type: custom:button-card
+            state:
+              - value: 'on'
+                color: rgb(255, 0, 0)
+                icon: mdi:door-open
+                styles:
+                  card:
+                    - animation: blink 5s ease infinite
+              - value: 'off'
+                color: white
+                icon: mdi:door
+            entity: binary_sensor.doors
+            size: 40%
+            aspect_ratio: null
+            name: Doors
+            styles:
+              card:
+                - width: 75px
+                - height: 60px
+                - margin: none
+            tap_action:
+              action: fire-dom-event
+              browser_mod:
+                service: browser_mod.popup
+                data:
+                  content:
+                    show_name: true
+                    show_icon: true
+                    show_state: true
+                    type: glance
+                    entities:
+                      - entity: binary_sensor.front_door
+                      - entity: binary_sensor.back_door
+                      - entity: binary_sensor.porch_door
+                      - entity: binary_sensor.deck_door
+                    title: Doors
+          - type: custom:button-card
+            state:
+              - value: 'on'
+                color: rgb(255, 0, 0)
+                icon: mdi:window-open
+                styles:
+                  card:
+                    - animation: blink 5s ease infinite
+              - value: 'off'
+                color: white
+                icon: mdi:window-closed-variant
+            entity: binary_sensor.windows
+            size: 40%
+            aspect_ratio: null
+            name: Windows
+            styles:
+              card:
+                - width: 75px
+                - height: 60px
+                - margin: none
+            tap_action:
+              action: fire-dom-event
+              browser_mod:
+                service: browser_mod.popup
+                data:
+                  content:
+                    show_name: true
+                    show_icon: true
+                    show_state: true
+                    type: glance
+                    entities:
+                      - entity: binary_sensor.guest_room_window
+                      - entity: binary_sensor.guest_bathroom_window
+                    title: Windows
+          - type: custom:button-card
+            state:
+              - value: 'on'
+                color: rgb(255, 0, 0)
+                icon: mdi:water-alert
+                styles:
+                  card:
+                    - animation: blink 5s ease infinite
+              - value: 'off'
+                color: white
+                icon: mdi:water
+            entity: binary_sensor.water_sensors
+            size: 40%
+            aspect_ratio: null
+            name: Water
+            styles:
+              card:
+                - width: 75px
+                - height: 60px
+                - margin: none
+            tap_action:
+              action: fire-dom-event
+              browser_mod:
+                service: browser_mod.popup
+                data:
+                  content:
+                    show_name: true
+                    show_icon: true
+                    show_state: true
+                    type: glance
+                    entities:
+                      - entity: binary_sensor.kitchen_water_sensor
+                      - entity: binary_sensor.bathroom_water_sensor
+                      - entity: binary_sensor.guest_bathroom_water_sensor
+                    title: Water Sensors
+          - type: custom:button-card
+            size: 40%
+            icon: mdi:lightning-bolt
+            name: Energy
+            aspect_ratio: null
+            color: white
+            styles:
+              card:
+                - width: 75px
+                - height: 60px
+                - margin: none
+            tap_action:
+              action: navigate
+              navigation_path: /energy
+      - type: vertical-stack
+        cards:
+          - type: custom:room-card
+            title: Bathroom
+            show_icon: true
+            theme: default
+            entities:
+              - entity: light.bathroom_lights
+                name: Lights
+                icon: mdi:light-recessed
+                state_color: true
+                tap_action:
+                  action: toggle
+                show_icon: true
+            info_entities:
+              - entity: sensor.bathroom_illumination_sensor
+              - entity: binary_sensor.bathroom_motion_sensor
+                show_icon: true
+                state_color: true
+          - type: custom:room-card
+            title: Guest Room
+            show_icon: true
+            theme: default
+            entities:
+              - entity: light.guest_room_lights
+                name: Lights
+                icon: mdi:ceiling-fan-light
+                state_color: '#275f78'
+                tap_action:
+                  action: toggle
+                show_icon: true
+              - entity: switch.guest_room_lamp
+                name: Lamp
+                icon: mdi:lamp
+                state_color: '#275f78'
+                tap_action:
+                  action: toggle
+                show_icon: true
+              - entity: fan.guest_room_fan
+                name: Fan
+                icon: mdi:fan
+                show_icon: true
+                tap_action:
+                  action: fan.toggle
+              - entity: light.guest_bathroom
+                name: Bathroom
+                icon: mdi:lightbulb
+                state_color: '#275f78'
+                tap_action:
+                  action: toggle
+                show_icon: true
+            info_entities:
+              - entity: sensor.guest_room_illumination_sensor
+              - entity: binary_sensor.guest_room_motion_sensor
+                show_icon: true
+                state_color: true
+          - type: custom:room-card
+            title: Outside
+            show_icon: true
+            theme: default
+            entities:
+              - entity: light.porch_light
+                name: Porch
+                icon: mdi:outdoor-lamp
+                state_color: '#275f78'
+                tap_action:
+                  action: toggle
+                show_icon: true
+              - entity: light.deck_lights
+                name: Deck
+                icon: mdi:post-lamp
+                state_color: true
+                theme: AMOLED Blue
+                tap_action:
+                  action: toggle
+                show_icon: true
+      - type: vertical-stack
+        cards:
+          - type: custom:layout-card
+            layout_type: custom:grid-layout
+            layout:
+              grid-template-columns: 1fr 1fr 1fr
+              margin: 0
+              padding: 0
+              card_margin: 0
+            cards: null
+          - type: custom:room-card
+            title: Hallway
+            show_icon: true
+            theme: default
+            entities:
+              - entity: light.hallway
+                name: Hall
+                icon: mdi:spotlight-beam
+                state_color: '#275f78'
+                tap_action:
+                  action: toggle
+                show_icon: true
+              - entity: light.hall_lights
+                name: Landing
+                icon: mdi:dome-light
+                state_color: '#275f78'
+                tap_action:
+                  action: toggle
+                show_icon: true
+              - entity: light.back_stairs_lights
+                name: Back Stairs
+                icon: mdi:lightbulb
+                state_color: '#275f78'
+                tap_action:
+                  action: toggle
+                show_icon: true
+            info_entities:
+              - entity: sensor.hallway_temperature
+          - type: custom:room-card
+            title: Kitchen
+            show_icon: true
+            theme: default
+            entities:
+              - entity: light.kitchen_lights
+                name: Lights
+                icon: mdi:light-recessed
+                tap_action:
+                  action: toggle
+                show_icon: true
+              - entity: light.island
+                name: Island
+                icon: mdi:globe-light
+                state_color: '#275f78'
+                tap_action:
+                  action: toggle
+                show_icon: true
+              - entity: switch.espresso_machine
+                show_icon: true
+                icon: mdi:coffee-maker
+                state_color: '#275f78'
+                tap_action:
+                  action: toggle
+            info_entities:
+              - entity: sensor.kitchen_temperature
+              - entity: sensor.kitchen_illumination
+              - entity: binary_sensor.kitchen_motion_sensor
+                show_icon: true
+                state_color: true
+          - type: custom:room-card
+            title: Living Room
+            show_icon: true
+            theme: default
+            entities:
+              - entity: light.living_room_lights
+                name: Lights
+                icon: mdi:chandelier
+                state_color: true
+                tap_action:
+                  action: toggle
+                show_icon: true
+              - entity: light.bar_lights
+                name: Bar
+                state_color: true
+                show_icon: true
+                icon: phu:bulb-group-ceiling-round
+            info_entities:
+              - entity: sensor.living_room_temperature
+              - entity: sensor.living_room_illumination_sensor
+              - entity: binary_sensor.living_room_motion_sensor
+                show_icon: true
+                state_color: true
+      - type: vertical-stack
+        cards:
+          - type: custom:room-card
+            title: Bedroom
+            show_icon: true
+            theme: default
+            entities:
+              - entity: light.bedroom_lights
+                name: Lights
+                icon: mdi:ceiling-fan-light
+                state_color: '#275f78'
+                tap_action:
+                  action: toggle
+                show_icon: true
+              - entity: light.bedroom_lamp
+                name: Lamp
+                icon: mdi:lightbulb
+                state_color: '#275f78'
+                tap_action:
+                  action: toggle
+                show_icon: true
+              - entity: input_button.bedroom_blinds
+                name: Blinds
+                icon: mdi:blinds
+                show_icon: true
+                state_color: '#275f78'
+                tap_action:
+                  action: fire-dom-event
+                  browser_mod:
+                    service: browser_mod.popup
+                    data:
+                      content:
+                        type: custom:vertical-slider-cover-card
+                        background: theme
+                        showButton: false
+                        buttonPath: /lovelace/0
+                        buttonText: Home
+                        countText: covers open
+                        closedBaseline: 5
+                        icon: mdi:blinds
+                        iconSize: 70px
+                        panelType: true
+                        showSidebar: false
+                        positionHeight: 200px
+                        positionWidth: 80px
+                        gapWidth: 10px
+                        switchHeight: 50px
+                        switchWidth: 75px
+                        showSwitch: true
+                        sideColor2: '#2b3455'
+                        openColor: '#4d6c8e'
+                        closedColor: hsl(0, 0%, 90%)
+                        title: Blinds
+                        titleSize: 40px
+                        entities:
+                          - entity: cover.bedroom_left_blind
+                            name: Left
+                          - entity: cover.bedroom_right_blind
+                            name: Right
+                          - entity: cover.bedroom_blinds
+                            name: Both
+              - entity: switch.bedroom_tv
+                show_icon: true
+                icon: mdi:television
+                state_color: true
+                tap_action:
+                  action: toggle
+            info_entities:
+              - entity: sensor.bedroom_temperature
+              - entity: sensor.bedroom_illumination_sensor
+              - entity: binary_sensor.bedroom_motion_sensor
+                show_icon: true
+                state_color: true
+          - type: custom:room-card
+            title: Den
+            show_icon: true
+            theme: default
+            entities:
+              - entity: light.den_lights
+                name: Lights
+                icon: mdi:ceiling-fan-light
+                state_color: '#275f78'
+                tap_action:
+                  action: toggle
+                show_icon: true
+              - entity: light.den_lamp
+                name: Lamp
+                icon: mdi:lamp
+                state_color: '#275f78'
+                tap_action:
+                  action: toggle
+                show_icon: true
+              - entity: light.movie_lights
+                show_icon: true
+                icon: mdi:movie
+                state_color: '#275f78'
+                tap_action:
+                  action: toggle
+              - entity: media_player.den_tv
+                show_icon: true
+                icon: mdi:television
+                state_color: '#275f78'
+                tap_action:
+                  action: toggle
+              - entity: media_player.den_speaker
+                show_icon: true
+                icon: mdi:speaker
+                state_color: '#275f78'
+                tap_action:
+                  action: toggle
+            info_entities:
+              - entity: sensor.den_illumination_sensor
+              - entity: binary_sensor.den_motion_sensor
+                show_icon: true
+                state_color: true
+          - type: custom:room-card
+            title: Office
+            show_icon: true
+            theme: default
+            entities:
+              - entity: light.office_lights
+                name: Lights
+                icon: mdi:ceiling-fan-light
+                state_color: '#275f78'
+                tap_action:
+                  action: toggle
+                show_icon: true
+              - entity: light.office_wall_lights
+                name: Wall
+                icon: mdi:string-lights
+                state_color: '#275f78'
+                tap_action:
+                  action: toggle
+                show_icon: true
+            info_entities:
+              - entity: sensor.office_illumination_sensor
+              - entity: binary_sensor.office_motion_sensor
+                show_icon: true
+                state_color: true
+  - theme: ios-dark-mode-light-blue-alternative
+    title: Car
+    path: car
+    icon: mdi:car
+    subview: true
+    badges: []
+    cards:
+      - type: custom:button-card
+        icon: mdi:arrow-left-thick
+        styles:
+          card:
+            - width: 50px
+            - height: 50px
+            - margin: none
+        tap_action:
+          action: navigate
+          navigation_path: /lovelace
+      - type: horizontal-stack
+        cards:
+          - type: vertical-stack
+            cards:
+              - show_name: true
+                show_icon: true
+                type: button
+                tap_action:
+                  action: toggle
+                entity: lock.fordpass_doorlock
+                name: Car Locks
+                icon_height: 100px
+              - show_name: false
+                show_icon: true
+                type: button
+                tap_action:
+                  action: toggle
+                entity: switch.fordpass_ignition_switch
+                name: 'Engine '
+                icon_height: 100px
+                hold_action:
+                  action: none
+      - type: vertical-stack
+        cards:
+          - type: entity
+            entity: sensor.fordpass_odometer
+          - type: entities
+            entities:
+              - entity: sensor.fordpass_doorstatus
+              - entity: sensor.fordpass_windowposition
+          - type: entities
+            entities:
+              - entity: sensor.fordpass_oil
+              - entity: sensor.fordpass_battery
+              - entity: sensor.fordpass_tirepressure
+      - type: map
+        entities:
+          - entity: device_tracker.fordpass_tracker
+        title: Location
+        default_zoom: 13
+        dark_mode: false
+        aspect_ratio: '20:10'
+      - type: gauge
+        entity: sensor.fordpass_fuel
+        name: Fuel
+        min: 0
+        max: 100
+        needle: true
+        severity:
+          green: 25
+          yellow: 10
+          red: 0
+  - theme: Mushroom
+    icon: mdi:database
+    type: custom:horizontal-layout
+    badges: []
+    cards:
+      - type: custom:button-card
+        icon: mdi:arrow-left-thick
+        styles:
+          card:
+            - width: 50px
+            - height: 50px
+            - margin: none
+        tap_action:
+          action: navigate
+          navigation_path: /lovelace
+      - type: picture-elements
+        elements:
+          - type: state-badge
+            entity: sensor.homenas_drive_1_status
+            style:
+              top: 25%
+              left: 22%
+              color: white
+          - type: state-badge
+            entity: sensor.homenas_drive_2_status
+            style:
+              top: 25%
+              left: 38%
+              color: white
+          - type: state-badge
+            entity: sensor.homenas_drive_3_status
+            style:
+              top: 25%
+              left: 53%
+              color: white
+          - type: state-badge
+            entity: sensor.homenas_drive_1_temperature
+            style:
+              top: 50%
+              left: 22%
+              color: white
+          - type: state-badge
+            entity: sensor.homenas_drive_2_temperature
+            style:
+              top: 50%
+              left: 38%
+              color: white
+          - type: state-badge
+            entity: sensor.homenas_drive_3_temperature
+            style:
+              top: 50%
+              left: 53%
+              color: white
+          - type: state-badge
+            entity: sensor.homenas_volume_1_volume_used
+            style:
+              top: 25%
+              left: 69%
+              color: white
+          - type: state-badge
+            entity: sensor.homenas_cpu_utilization_total
+            style:
+              top: 50%
+              left: 69%
+              color: white
+        image: >-
+          data:image/jpeg;base64,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
+      - camera_view: auto
+        type: picture-glance
+        title: Office Printer
+        image: >-
+          https://ssl-product-images.www8-hp.com/digmedialib/prodimg/lowres/c04699833.png
+        entities:
+          - entity: sensor.printer_black_ink
+            show_state: true
+          - entity: sensor.color_ink
+            show_state: true
+      - type: custom:collapsable-cards
+        title: Battery State
+        cards:
+          - type: custom:collapsable-cards
+            title: Water Sensors
+            cards:
+              - type: custom:battery-state-card
+                color_gradient:
+                  - '#ff0000'
+                  - '#ffff00'
+                  - '#1C761E'
+                entities:
+                  - entity: sensor.kitchen_water_sensor_battery
+                    name: Kitchen Water Sensor
+                  - entity: sensor.bathroom_water_sensor_battery
+                    name: Bathroom Water Sensor
+                  - entity: sensor.guest_bathroom_water_sensor_battery
+                    name: Guest Bathroom Water Sensor
+          - type: custom:collapsable-cards
+            title: Door Sensors
+            cards:
+              - type: custom:battery-state-card
+                color_gradient:
+                  - '#ff0000'
+                  - '#ffff00'
+                  - '#1C761E'
+                entities:
+                  - entity: sensor.front_door_battery
+                    name: Front Door
+                  - entity: sensor.back_door_battery
+                    name: Back Door
+                  - entity: sensor.porch_door_battery
+                    name: Porch Door
+                  - entity: sensor.deck_door_battery
+                    name: Deck Door
+          - type: custom:collapsable-cards
+            title: Window Sensors
+            cards:
+              - type: custom:battery-state-card
+                color_gradient:
+                  - '#ff0000'
+                  - '#ffff00'
+                  - '#1C761E'
+                entities:
+                  - entity: sensor.guest_room_window_battery
+                    name: Guest Room Window
+                  - entity: sensor.guest_bathroom_window_battery
+                    name: Guest Bathroom Window
+          - type: custom:collapsable-cards
+            title: Motion Sensors
+            cards:
+              - type: custom:battery-state-card
+                color_gradient:
+                  - '#ff0000'
+                  - '#ffff00'
+                  - '#1C761E'
+                entities:
+                  - entity: sensor.hue_motion_sensor_1_battery
+                    name: Kitchen Motion Sensor
+                  - entity: sensor.den_motion_sensor_battery
+                    name: Den Motion Sensor
+                  - entity: sensor.bathroom_motion_sensor_battery
+                    name: Bathroom Motion Sensor
+                  - entity: sensor.guest_room_motion_sensor_battery
+                    name: Guest Room Motion Sensor
+                  - entity: sensor.living_room_motion_sensor_battery
+                    name: Living Room Motion Sensor
+                  - entity: sensor.office_motion_sensor_battery
+                    name: Office Motion Sensor
