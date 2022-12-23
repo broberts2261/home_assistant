@@ -1,0 +1,18 @@
+  - entity: switch.living_room_ac
+    name: Cam Switch
+    show_icon: true
+    state_color: false
+    tap_action:
+      action: toggle
+    icon:
+      conditions:
+        - icon: mdi:video
+          condition: equals
+          value: 'on'
+          styles:
+            color: orange
+        - icon: mdi:video-box-off
+          condition: equals
+          value: 'off'
+          styles:
+            color: white
