@@ -1,0 +1,25 @@
+type: custom:button-card
+state:
+  - value: unlocked
+    color: rgb(255, 0, 0)
+    icon: mdi:door-open
+    styles:
+      card:
+        - animation: blink 5s ease infinite
+  - value: locked
+    color: green
+    icon: mdi:door-closed-lock
+  - value: jammed
+    color: red
+    icon: mdi:lock-alert
+entity: lock.front_door
+size: 40%
+aspect_ratio: null
+name: Front
+styles:
+  card:
+    - width: 75px
+    - height: 60px
+    - margin: none
+tap_action:
+  action: toggle
