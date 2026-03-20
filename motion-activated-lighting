@@ -1,0 +1,81 @@
+# ============================================================
+# MOTION-ACTIVATED LIGHTING TEMPLATE
+# ============================================================
+# HOW TO USE:
+#   Search for every ALL_CAPS placeholder and replace it
+#   with the correct entity ID for the room you're setting up.
+#
+# PLACEHOLDERS:
+#   ROOM_NAME           - Human-friendly label e.g. "Kitchen"
+#   MOTION_SENSOR       - e.g. binary_sensor.kitchen_motion
+#   ILLUMINANCE_SENSOR  - e.g. sensor.kitchen_illuminance
+#   ILLUMINANCE_THRESHOLD - Lux value above which lights won't trigger (e.g. 200)
+#   LIGHT_ENTITY        - e.g. light.kitchen or light.kitchen_ceiling
+#   BRIGHTNESS_PCT      - Normal brightness 1-100 (e.g. 100)
+# ============================================================
+
+alias: "Motion Lighting - ROOM_NAME"
+description: "Turns on ROOM_NAME lights when motion is detected, respects illuminance and bedtime mode."
+
+trigger:
+  # --- Trigger 1: Motion Detected ---
+  - platform: state
+    entity_id: binary_sensor.MOTION_SENSOR
+    to: "on"
+    id: motion_detected
+
+  # --- Trigger 2: Motion Cleared (for auto-off timer) ---
+  - platform: state
+    entity_id: binary_sensor.MOTION_SENSOR
+    to: "off"
+    for:
+      minutes: 15
+    id: motion_cleared
+
+condition: []  # Conditions are handled inside the action using choose, see below
+
+action:
+  - choose:
+
+      # ============================================================
+      # BRANCH 1 — Motion detected: turn lights on
+      # ============================================================
+      - conditions:
+          - condition: trigger
+            id: motion_detected
+
+          # Only run if room is dark enough
+          - condition: numeric_state
+            entity_id: sensor.ILLUMINANCE_SENSOR
+            below: ILLUMINANCE_THRESHOLD
+
+          # Only run if bedtime mode is OFF
+          - condition: state
+            entity_id: input_boolean.bedtime_mode
+            state: "off"
+
+        sequence:
+          - service: light.turn_on
+            target:
+              entity_id: light.LIGHT_ENTITY
+            data:
+              brightness_pct: BRIGHTNESS_PCT
+              transition: 1  # Smooth 1-second fade-in
+
+      # ============================================================
+      # BRANCH 2 — No motion for 15 min: turn lights off
+      # ============================================================
+      - conditions:
+          - condition: trigger
+            id: motion_cleared
+
+        sequence:
+          - service: light.turn_off
+            target:
+              entity_id: light.LIGHT_ENTITY
+            data:
+              transition: 2  # Smooth 2-second fade-out
+
+mode: restart
+# "restart" means: if motion is detected again before the 15-min
+# timer fires, the automation restarts and keeps the lights on.
